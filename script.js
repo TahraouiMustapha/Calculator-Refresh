@@ -31,13 +31,25 @@ operators.forEach( btn => {
 //add click event to equals btn
 const equalsBtn = document.querySelector('.Equals');
 equalsBtn.addEventListener('click', () => {
-    secondNumber = displayValue;
-    displayValue = '';
-    screen.innerHTML = '';
-    screen.innerHTML = operate(firstNumber,
+    if( firstNumber){   
+        secondNumber = displayValue;
+        displayValue = '';
+        screen.innerHTML = '';
+        screen.innerHTML = operate(firstNumber,
                                 operator,
                                 secondNumber) ;
+    }
 })
+
+//add click event to clear btn
+const clear = document.querySelector('.clear');
+clear.addEventListener('click', () => {
+    firstNumber = undefined;
+    secondNumber = undefined;
+    operator = '';
+    displayValue = '';
+    screen.innerHTML = '';
+}); 
 
 function populateDisplay(value) {
     if(displayValue == '') {
@@ -79,5 +91,6 @@ function multiply(a, b) {
 
 function divide(a, b) {
     if(b === 0) return "Error"
-    return a / b;
+    return Math.round(
+        (a / b) * Math.pow(10, 7)) / Math.pow(10, 7) ;
 }
