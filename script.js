@@ -22,7 +22,11 @@ numberBtns.forEach(btn =>
 //add event listener to all operator btns 
 operators.forEach( btn => {
     btn.addEventListener('click', e => {
-        firstNumber = displayValue;
+        if(operator != '' && firstNumber ) {
+            let result = operate(firstNumber, operator, displayValue);
+            firstNumber = result.toString();
+            screen.innerHTML = firstNumber;
+        } else { firstNumber = displayValue; }
         displayValue = '';
         operator = e.target.textContent.trim();
     })
@@ -31,12 +35,13 @@ operators.forEach( btn => {
 //add click event to equals btn
 const equalsBtn = document.querySelector('.Equals');
 equalsBtn.addEventListener('click', () => {
-    if( firstNumber){   
+    if( operator != '' ){   
         secondNumber = displayValue;
         displayValue = '';
         screen.innerHTML = '';
         let result = operate(firstNumber,operator,
                                 secondNumber); 
+        operator = '';                                
         screen.innerHTML = result;
         if(typeof result === 'string') startFresh(); 
     }
