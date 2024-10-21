@@ -1,7 +1,51 @@
-let firstNumber, 
-    secondNumber, 
-    operator = '';
+const screen = document.querySelector('.screen');
+let firstNumber, secondNumber, operator = '';
+let displayValue = ''; 
 
+
+//get all number buttons
+const numberBtns = Array.from(
+    document.querySelectorAll('.digit')
+);
+//get all operator buttons
+const operators = Array.from(
+    document.querySelectorAll('.operator')
+);
+
+//add event listener to all number btns 
+numberBtns.forEach(btn => 
+    btn.addEventListener('click', e => 
+        populateDisplay(e.target.textContent.trim())
+    )
+);
+
+//add event listener to all operator btns 
+operators.forEach( btn => {
+    btn.addEventListener('click', e => {
+        firstNumber = displayValue;
+        displayValue = '';
+        operator = e.target.textContent.trim();
+    })
+})
+
+//add click event to equals btn
+const equalsBtn = document.querySelector('.Equals');
+equalsBtn.addEventListener('click', () => {
+    secondNumber = displayValue;
+    displayValue = '';
+    screen.innerHTML = '';
+    screen.innerHTML = operate(firstNumber,
+                                operator,
+                                secondNumber) ;
+})
+
+function populateDisplay(value) {
+    if(displayValue == '') {
+        screen.innerHTML = '';
+    }
+    screen.innerHTML += value;
+    displayValue = screen.innerHTML;
+}
 
 function operate(number1, operator, number2) {
     number1 = Number(number1);
@@ -9,17 +53,13 @@ function operate(number1, operator, number2) {
 
     switch (operator) {
         case '+':
-            console.log(add(number1, number2));
-            break;
+            return add(number1, number2);
         case '-':
-            console.log(subtract(number1, number2));
-            break;
+            return subtract(number1, number2);
         case '*':
-            console.log(multiply(number1, number2));
-            break;    
+            return multiply(number1, number2);
         case '/':
-            console.log(divide(number1, number2));
-            break; 
+            return divide(number1, number2);
         default :
             console.log('no operator');                               
     }
