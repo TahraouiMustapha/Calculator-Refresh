@@ -35,21 +35,26 @@ equalsBtn.addEventListener('click', () => {
         secondNumber = displayValue;
         displayValue = '';
         screen.innerHTML = '';
-        screen.innerHTML = operate(firstNumber,
-                                operator,
-                                secondNumber) ;
+        let result = operate(firstNumber,operator,
+                                secondNumber); 
+        screen.innerHTML = result;
+        if(typeof result === 'string') startFresh(); 
     }
 })
 
 //add click event to clear btn
 const clear = document.querySelector('.clear');
 clear.addEventListener('click', () => {
+    startFresh()
+    screen.innerHTML = '';
+} ); 
+
+function startFresh() {
     firstNumber = undefined;
     secondNumber = undefined;
     operator = '';
     displayValue = '';
-    screen.innerHTML = '';
-}); 
+}
 
 function populateDisplay(value) {
     if(displayValue == '') {
@@ -90,7 +95,7 @@ function multiply(a, b) {
 }
 
 function divide(a, b) {
-    if(b === 0) return "Error"
+    if(b === 0) return "Error!"
     return Math.round(
         (a / b) * Math.pow(10, 7)) / Math.pow(10, 7) ;
 }
