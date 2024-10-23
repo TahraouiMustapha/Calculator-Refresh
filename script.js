@@ -12,6 +12,15 @@ const operators = Array.from(
     document.querySelectorAll('.operator')
 );
 
+//get the '.' button
+const pointBtn = document.querySelector('.point');
+pointBtn.addEventListener("click", () => {
+    if( displayValue != '' && !displayValue.includes('.') ) {
+        displayValue += '.';
+        screen.innerHTML+='.';
+    }
+});
+
 //add event listener to all number btns 
 numberBtns.forEach(btn => 
     btn.addEventListener('click', e => 
