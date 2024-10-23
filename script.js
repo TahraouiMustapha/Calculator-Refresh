@@ -37,12 +37,12 @@ const equalsBtn = document.querySelector('.Equals');
 equalsBtn.addEventListener('click', () => {
     if( operator != '' ){   
         secondNumber = displayValue;
-        displayValue = '';
         screen.innerHTML = '';
         let result = operate(firstNumber,operator,
                                 secondNumber); 
         operator = '';                                
         screen.innerHTML = result;
+        displayValue = result.toString();
         if(typeof result === 'string') startFresh(); 
     }
 })
