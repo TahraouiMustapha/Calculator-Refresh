@@ -34,6 +34,7 @@ body {
     align-items: flex-end;
     padding: 8px;
     font-size: 32px;
+    background-color: #aba7a780;
 } 
 
 .calculator button {
@@ -41,7 +42,34 @@ body {
     margin: 4px;
     cursor: pointer;
     border: none;
-    font-size: 20px;
+    font-size: 28px;
+    font-weight: 600;
+    background-color:  #B0B0B0;
+    color: #fff;
+}
+
+button.operator {
+    background-color: #FFA500;
+}
+
+button.Equals {
+    background-color: #007BFF;
+}
+
+button.clear {
+    background-color: #FF4C4C;
+}
+
+button:hover {
+    background-color: #A0A0A0;
+}
+
+button.operator:hover {
+    background-color: #FF8C00;
+}
+
+button.Equals:hover {
+    background-color: #014288;
 }
 
 
